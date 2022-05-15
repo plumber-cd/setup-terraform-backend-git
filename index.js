@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const io = require('@actions/io');
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
@@ -18,6 +19,7 @@ async function setup() {
     const targetCLI = path.join(target, 'terraform-backend-git')
     await io.mkdirP(target)
     await io.mv(pathToCLI, targetCLI);
+    fs.chmodSync(targetCLI, "777");
     core.addPath(target);
   } catch (e) {
     core.setFailed(e);
