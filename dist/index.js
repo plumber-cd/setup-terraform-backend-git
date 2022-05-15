@@ -6,8 +6,8 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const path = __webpack_require__(622);
-const fs = __webpack_require__(747);
-const io = __webpack_require__(704);
+const fs = __webpack_require__(747).promises;
+const io = __webpack_require__(351);
 const core = __webpack_require__(186);
 const tc = __webpack_require__(784);
 const { getDownloadObject } = __webpack_require__(918);
@@ -83,7 +83,7 @@ module.exports = { getDownloadObject }
 
 /***/ }),
 
-/***/ 351:
+/***/ 241:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -191,7 +191,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __webpack_require__(351);
+const command_1 = __webpack_require__(241);
 const file_command_1 = __webpack_require__(717);
 const utils_1 = __webpack_require__(278);
 const os = __importStar(__webpack_require__(87));
@@ -553,7 +553,7 @@ const os = __importStar(__webpack_require__(87));
 const events = __importStar(__webpack_require__(614));
 const child = __importStar(__webpack_require__(129));
 const path = __importStar(__webpack_require__(622));
-const io = __importStar(__webpack_require__(436));
+const io = __importStar(__webpack_require__(351));
 const ioUtil = __importStar(__webpack_require__(962));
 /* eslint-disable @typescript-eslint/unbound-method */
 const IS_WINDOWS = process.platform === 'win32';
@@ -1944,7 +1944,7 @@ function isUnixExecutable(stats) {
 
 /***/ }),
 
-/***/ 436:
+/***/ 351:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -2457,7 +2457,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
-const io = __importStar(__webpack_require__(436));
+const io = __importStar(__webpack_require__(351));
 const fs = __importStar(__webpack_require__(747));
 const mm = __importStar(__webpack_require__(473));
 const os = __importStar(__webpack_require__(87));
@@ -5007,14 +5007,6 @@ function v4(options, buf, offset) {
 }
 
 module.exports = v4;
-
-
-/***/ }),
-
-/***/ 704:
-/***/ ((module) => {
-
-module.exports = eval("require")("io");
 
 
 /***/ }),

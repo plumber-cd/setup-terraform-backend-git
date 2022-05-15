@@ -1,6 +1,6 @@
 const path = require('path');
-const fs = require('fs');
-const io = require('io');
+const fs = require('fs').promises;
+const io = require('@actions/io');
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 const { getDownloadObject } = require('./lib/utils');
