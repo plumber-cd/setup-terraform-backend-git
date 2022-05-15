@@ -15,7 +15,7 @@ async function setup() {
     const pathToCLI = await tc.downloadTool(download.url);
 
     // Expose the tool by adding it to the PATH
-    const target = path.join(pathToCLI, 'bin')
+    const target = pathToCLI + '.bin'
     const targetCLI = path.join(target, 'terraform-backend-git')
     await io.mkdirP(target)
     await io.mv(pathToCLI, targetCLI);
