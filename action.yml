@@ -8,3 +8,7 @@ inputs:
 runs:
   using: node12
   main: dist/index.js
+
+branding:
+  icon: 'download-cloud'
+  color: 'gray-dark'
