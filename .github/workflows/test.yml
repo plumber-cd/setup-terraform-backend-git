@@ -31,9 +31,9 @@ jobs:
 
     - name: Capture version installed
       run: |
-        export VERSION=$( terraform-backend-git --version )
+        export VERSION=$( terraform-backend-git version )
         echo 'VERSION_INSTALLED<<EOF' >> $GITHUB_ENV
-        terraform-backend-git --version >> $GITHUB_ENV
+        terraform-backend-git version >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: Verify
