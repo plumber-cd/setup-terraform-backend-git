@@ -6,7 +6,6 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const path = __webpack_require__(622);
-const fs = __webpack_require__(747).promises;
 const io = __webpack_require__(351);
 const core = __webpack_require__(186);
 const tc = __webpack_require__(784);
@@ -26,7 +25,6 @@ async function setup() {
     const targetCLI = path.join(target, 'terraform-backend-git')
     await io.mkdirP(target)
     await io.mv(pathToCLI, targetCLI);
-    fs.chmodSync(targetCLI, "777");
     core.addPath(target);
   } catch (e) {
     core.setFailed(e);
