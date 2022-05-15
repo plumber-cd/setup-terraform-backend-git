@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+const io = require('io');
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 const { getDownloadObject } = require('./lib/utils');
@@ -6,14 +8,17 @@ const { getDownloadObject } = require('./lib/utils');
 async function setup() {
   try {
     // Get version of tool to be installed
-    const version = core.getInput('version');
+    const version = core.getInput('version', { required: true });
 
-    // Download the specific version of the tool, e.g. as a tarball/zipball
+    // Download the specific version of the tool
     const download = getDownloadObject(version);
     const pathToCLI = await tc.downloadTool(download.url);
 
     // Expose the tool by adding it to the PATH
-    core.addPath(path.join(pathToCLI, download.binPath));
+    const target = path.join(pathToCLI, 'bin', 'terraform-backend-git')
+    await io.mv(pathToCLI, target);
+    fs.chmodSync(target, "777");
+    core.addPath(target);
   } catch (e) {
     core.setFailed(e);
   }
