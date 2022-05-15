@@ -15,9 +15,11 @@ async function setup() {
     const pathToCLI = await tc.downloadTool(download.url);
 
     // Expose the tool by adding it to the PATH
-    const target = path.join(pathToCLI, 'bin', 'terraform-backend-git')
-    await io.mv(pathToCLI, target);
-    fs.chmodSync(target, "777");
+    const target = path.join(pathToCLI, 'bin')
+    const targetCLI = path.join(target, 'terraform-backend-git')
+    await io.mkdirP(target)
+    await io.mv(pathToCLI, targetCLI);
+    fs.chmodSync(targetCLI, "777");
     core.addPath(target);
   } catch (e) {
     core.setFailed(e);
