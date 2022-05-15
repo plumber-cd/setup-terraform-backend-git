@@ -1,0 +1,10 @@
+name: setup-terraform-backend-git
+description: Setup terraform-backend-git on GitHub Actions runners
+inputs:
+  version:
+    description: Version of terraform-backend-git to install
+    required: false
+    default: 0.1.2
+runs:
+  using: node12
+  main: dist/index.js

@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        version: [0.1.2]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup
+      uses: ./
+      with:
+        version: ${{ matrix.version }}
+
+    - name: Capture version installed
+      run: |
+        export VERSION=$( terraform-backend-git --version )
+        echo 'VERSION_INSTALLED<<EOF' >> $GITHUB_ENV
+        terraform-backend-git --version >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+
+    - name: Verify
+      shell: python
+      env:
+        VERSION_EXPECTED: ${{ matrix.version }}
+      run: |
+        import sys, os
+        sys.exit(
+            int(not os.environ["VERSION_EXPECTED"] in os.environ["VERSION_INSTALLED"])
+        )
